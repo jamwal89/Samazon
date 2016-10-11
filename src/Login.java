@@ -20,6 +20,7 @@ import customtools.DBProduct;
 /**
  * Servlet implementation class ProductList
  */
+@SuppressWarnings("unused")
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;

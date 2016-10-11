@@ -15,18 +15,19 @@
 		<table class="table table-bordered table-striped table-hover">
 			<thead>
 				<tr>
+					<th>Image</th>	
 					<th>Product</th>
 					<th>ProductDetail</th>
 					<th>ProductPrice</th>
 					<th>Purchase</th>
-					<th>Delete</th>
+				
 					
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="prods" items="${prods}">
 					<tr>
-						
+						<td><img src="<c:out value="${prods.image}"/>" height="200" width="250" alt=""/> </td>
 						<td><c:out value="${prods.productname}" /></td>
 						<td><c:out value="${prods.productdetails}" /></td>
 						<td><c:out value="${prods.productprice}" />  </td> 
@@ -35,19 +36,20 @@
 							<input type="hidden" name="action" value="Add">
 							 <input type="submit" value="Add"> 
 							 </form> </td>
-							 <td> <form action="CartServlet" method="post"> 
-							<input type="hidden" name="Productid" value="<c:out value="${prods.productid}"/>"> 
-							<input type="hidden" name="action" value="Delete">
-							 <input type="submit" value="Delete"> 
-							 </form> </td>
+							
 						
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 
-</center>>
-<h1> </h1>
+</center>
+	<center>
+	<form action="Cart.jsp" method="post">
+	<input type="submit" name="Checkout" value="Checkout">
+	<input type="hidden" name="action" value="Checkout">
+	</form>
+	</center>
 </body>
 <jsp:include page="Footer.jsp"></jsp:include>
 </html>

@@ -19,6 +19,8 @@ public class Samazonproduct implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long productid;
 
+	private String image;
+
 	private String productdetails;
 
 	private String productname;
@@ -38,6 +40,14 @@ public class Samazonproduct implements Serializable {
 
 	public void setProductid(long productid) {
 		this.productid = productid;
+	}
+
+	public String getImage() {
+		return this.image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public String getProductdetails() {

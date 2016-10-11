@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -17,14 +18,12 @@ public class Samazonorder implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long orderid;
+	
+	
+	@Temporal(TemporalType.DATE)
+	private Date ondate;
 
-	private String orderplace;
-
-	private String productdetails;
-
-	private String productname;
-
-	private double productprice;
+	private String orderconfirmed;
 
 	//bi-directional many-to-one association to Samazonproduct
 	@ManyToOne
@@ -47,36 +46,20 @@ public class Samazonorder implements Serializable {
 		this.orderid = orderid;
 	}
 
-	public String getOrderplace() {
-		return this.orderplace;
+	public Date getOndate() {
+		return this.ondate;
 	}
 
-	public void setOrderplace(String orderplace) {
-		this.orderplace = orderplace;
+	public void setOndate(Date ondate) {
+		this.ondate = ondate;
 	}
 
-	public String getProductdetails() {
-		return this.productdetails;
+	public String getOrderconfirmed() {
+		return this.orderconfirmed;
 	}
 
-	public void setProductdetails(String productdetails) {
-		this.productdetails = productdetails;
-	}
-
-	public String getProductname() {
-		return this.productname;
-	}
-
-	public void setProductname(String productname) {
-		this.productname = productname;
-	}
-
-	public double getProductprice() {
-		return this.productprice;
-	}
-
-	public void setProductprice(double productprice) {
-		this.productprice = productprice;
+	public void setOrderconfirmed(String orderconfirmed) {
+		this.orderconfirmed = orderconfirmed;
 	}
 
 	public Samazonproduct getSamazonproduct() {

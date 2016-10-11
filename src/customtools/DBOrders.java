@@ -1,15 +1,21 @@
 package customtools;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
+
 import customtools.DBUtil;
 
 import model.Samazonorder;
-import model.Samazonuser;
+import model.Samazonproduct;
 
+
+
+@SuppressWarnings("unused")
 public class DBOrders {
 	 public static void insert(Samazonorder or) {
 		    
@@ -30,7 +36,62 @@ public class DBOrders {
 		 em.close();
 		 }
 		 
-		 
 		 }
+	 
+	 public static void delete(Samazonorder product) {
+    	 EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    	 EntityTransaction trans = em.getTransaction();
+    	 try {
+    	 trans.begin();
+    	 em.remove(em.merge(product));
+    	 trans.commit();
+    	 } catch (Exception e) {
+    	 System.out.println(e);
+    	 trans.rollback();
+    	 } finally {
+    	 em.close();
+    	 } 
+		 
+	 }
+		public static List<Samazonorder> getProductList() {
+			 EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		       String qString = "SELECT s FROM Samazonorder s";
+		        
+		        List<Samazonorder> order = null;
+		        try{
+		            TypedQuery<Samazonorder> query = em.createQuery(qString,Samazonorder.class);
+		            order = query.getResultList();
+
+		        }catch (Exception e){
+		            e.printStackTrace();
+		        }
+		        finally{
+		                em.close();
+		            }
+		        return order;
+		    }
+		
+		
+		 
+		 public static  Samazonorder getProduct(long productid)
+		 {
+		 EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		 String qString = "SELECT s FROM Samazonorder s where s.samazonproduct.productid = :productid";
+		 TypedQuery<Samazonorder> q = em.createQuery(qString, Samazonorder.class);
+		 q.setParameter("productid", productid);
+		 Samazonorder product = null;
+		 try {	
+			 product = q.getSingleResult();
+		 }catch (NoResultException e){
+		 System.out.println(e);
+		 }finally{
+		 em.close();
+		 }
+		 return product;
+		
+
+		}
+		 
+		 
 }
 
