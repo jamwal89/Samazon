@@ -10,25 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.Session;
-
-import model.Samazonproduct;
+import customtools.DBOrders;
+import model.Samazonorder;
 import model.Samazonuser;
-import customtools.DBCustomers;
-import customtools.DBProduct;
 
 /**
- * Servlet implementation class ProductList
+ * Servlet implementation class OrderConfirmationServlet
  */
-@SuppressWarnings("unused")
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/OrderConfirmationServlet")
+public class OrderConfirmationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public OrderConfirmationServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,37 +34,41 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		HttpSession session = request.getSession();
-		String nextURL;
-		String username = request.getParameter("name");
-		String userpassword = request.getParameter("Password");
-		session.setAttribute("user", username);
-		boolean validUser=DBCustomers.isValidUser(username, userpassword);
-		
-		if(validUser){
-		Samazonuser user=DBCustomers.getUserByName(username);
-		session.setAttribute("user", user);
-	
-		List<Samazonproduct> prods=null;
-		prods=DBProduct.getProductList();
-		session.setAttribute("prods" , prods);
-		 nextURL="/Products.jsp";
-		
-	}
-		else {
-			nextURL="/Login.jsp";
+		@SuppressWarnings("unchecked")
+		List<Samazonorder> orders= (List<Samazonorder>) session.getAttribute("orders");
+		 
+		if (!orders.isEmpty()) {
+			
+			for ( Samazonorder s : orders){
+				System.out.println(s.getOrderconfirmed());
+				s.setOrderconfirmed("Y");
+				DBOrders.update(s);
+				System.out.println(s.getOrderconfirmed());
+				System.out.println("Order confirmed");
+
+			}
 		}
+		else {
+			System.out.println("There are no items in the order list");
+		}
+		
+		
+		Samazonuser user=(Samazonuser) session.getAttribute("user");
+		long userid=user.getUserid();
+		List<Samazonorder> history=DBOrders.getProductHistory(userid);
+		session.setAttribute("history",history);
+		
+		String nextURL="/MailServlet" ;
 		response.sendRedirect(request.getContextPath() + nextURL);
-}
+	}
+
 }

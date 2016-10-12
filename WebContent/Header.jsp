@@ -5,6 +5,8 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,11 +38,16 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			</div>
 			<div class="head-t">
 				<ul class="card">
+				
+		
+					index.html
 					<li><a href="wishlist.html" ><i class="fa fa-heart" aria-hidden="true"></i>Wishlist</a></li>
-					<li><a href="login.html" ><i class="fa fa-user" aria-hidden="true"></i>Login</a></li>
 					<li><a href="register.html" ><i class="fa fa-arrow-right" aria-hidden="true"></i>Register</a></li>
-					<li><a href="about.html" ><i class="fa fa-file-text-o" aria-hidden="true"></i>Order History</a></li>
+					<li><a href="OrderHistory.jsp" ><i class="fa fa-file-text-o" aria-hidden="true"></i>Order History</a></li>
 					<li><a href="shipping.html" ><i class="fa fa-ship" aria-hidden="true"></i>Shipping</a></li>
+			
+					
+					
 				</ul>	
 			</div>
 			
@@ -69,7 +76,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					</div> 
 					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav ">
-							<li ><a href="index.html" class="hyper "><span>Home</span></a></li>	
+							<li ><a href="Products.jsp" class="hyper "><span>Home</span></a></li>	
 							
 							<li  class="dropdown ">
 								<a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown" ><span>My Profile<b class="caret"></b></span></a>
@@ -203,7 +210,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 								</ul>
 							</li>
 							
-							<li><a href="codes.html" class="hyper"> <span>Codes</span></a></li>
+							<li><a href="OrderHistory.jsp" class="hyper"> <span>OrderHistory</span></a></li>
 							<li><a href="contact.html" class="hyper"><span>Contact Us</span></a></li>
 						</ul>
 					</div>

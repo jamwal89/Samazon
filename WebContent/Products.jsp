@@ -19,7 +19,8 @@
 					<th>Product</th>
 					<th>ProductDetail</th>
 					<th>ProductPrice</th>
-					<th>Purchase</th>
+					<th>Add to cart</th>
+					<th>Proceed</th>
 				
 					
 				</tr>
@@ -36,7 +37,10 @@
 							<input type="hidden" name="action" value="Add">
 							 <input type="submit" value="Add"> 
 							 </form> </td>
-							
+						<td><form action="DeleteServlet" method="post">
+							<input type="submit" name="Checkout" value="Checkout">
+							<input type="hidden" name="action" value="Checkout">
+							</form></td>
 						
 					</tr>
 				</c:forEach>
@@ -44,12 +48,7 @@
 		</table>
 
 </center>
-	<center>
-	<form action="Cart.jsp" method="post">
-	<input type="submit" name="Checkout" value="Checkout">
-	<input type="hidden" name="action" value="Checkout">
-	</form>
-	</center>
+	
 </body>
 <jsp:include page="Footer.jsp"></jsp:include>
 </html>

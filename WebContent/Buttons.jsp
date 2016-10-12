@@ -7,15 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-<jsp:include page="Header.jsp"></jsp:include>
 </head>
 <body>
-			<center>
-					<h1> Your order has been confirmed</h1>
-					<p1> A confirmation email has been sent at <c:out value="${email}" />  </p1>
-					<br><p1> Hope you enjoyed shopping</p1>
-			</center>
+		
+
 </body>
 </html>
-
-<jsp:include page="Footer.jsp"></jsp:include>

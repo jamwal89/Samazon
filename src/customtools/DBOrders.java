@@ -42,6 +42,7 @@ public class DBOrders {
     	 EntityManager em = DBUtil.getEmFactory().createEntityManager();
     	 EntityTransaction trans = em.getTransaction();
     	 try {
+    		 System.out.println("product deleted");
     	 trans.begin();
     	 em.remove(em.merge(product));
     	 trans.commit();
@@ -53,6 +54,24 @@ public class DBOrders {
     	 } 
 		 
 	 }
+	 
+
+	 public static void update(Samazonorder or) {
+		 EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		 EntityTransaction trans = em.getTransaction();
+		 try {
+		 trans.begin();
+		 em.merge(or);
+		 trans.commit();
+		 } catch (Exception e) {
+		 System.out.println(e);
+		 trans.rollback();
+		 } finally {
+		 em.close();
+		 }
+		 }
+	 
+	 
 		public static List<Samazonorder> getProductList() {
 			 EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		       String qString = "SELECT s FROM Samazonorder s";
@@ -68,6 +87,9 @@ public class DBOrders {
 		        finally{
 		                em.close();
 		            }
+		        if(order == null) {
+		        	System.out.println("The list is null");
+		        }
 		        return order;
 		    }
 		
@@ -91,7 +113,32 @@ public class DBOrders {
 		
 
 		}
-		 
-		 
-}
+		 public static List<Samazonorder> getProductHistory(long userid) {
+			 EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		
+		       String qString = "SELECT s FROM Samazonorder s where  s.samazonuser.userid =:userid ";
+		        
+		        List<Samazonorder> orderHistory = null;
+		        try{
+		            TypedQuery<Samazonorder> query = em.createQuery(qString,Samazonorder.class);
+		            query.setParameter("userid", userid);
+		        
+		           
+		   
+		            orderHistory = query.getResultList();
+
+		        }catch (Exception e){
+		            e.printStackTrace();
+		        }
+		        finally{
+		                em.close();
+		            }
+		       
+		        return orderHistory;
+		    }
+		
+		
+
+		}
+
 

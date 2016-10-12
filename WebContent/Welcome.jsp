@@ -10,12 +10,16 @@
 <jsp:include page="Header.jsp"></jsp:include>
 </head>
 <body>
-			<center>
-					<h1> Your order has been confirmed</h1>
-					<p1> A confirmation email has been sent at <c:out value="${email}" />  </p1>
-					<br><p1> Hope you enjoyed shopping</p1>
-			</center>
-</body>
-</html>
+	<center>
+			<h1>Welcome to Samazon  <c:out value="${user.username}" /></h1>
+				<p1> Start Shopping or Login to Samazon prime</p1>
+				
+				
+				
+				
+				
+				</center>
 
+</body>
 <jsp:include page="Footer.jsp"></jsp:include>
+</html>

@@ -26,7 +26,7 @@
 				<c:forEach var="order" items="${orders}">
 					<tr>
 						
-						
+					
 						<td><c:out value="${order.samazonproduct.productname}" /></td>
 						<td><c:out value="${order.samazonproduct.productdetails}" /></td>
 						<td>$<c:out value="${order.samazonproduct.productprice}" /></td>
@@ -44,9 +44,10 @@
 				
 				<td></td>
 				<td>$<c:out value="${price}" /></td>
-				<td> <form action="OrderConfirmation.jsp" method="post">
-						<input type="submit" name="Checkout" value="Purchase">
-								<input type="hidden" name="action" value="Purchase">
+				<td> <form action="OrderConfirmationServlet" method="post" >
+						<input type="submit" name="Purchase" value="Purchase">
+						<input type="hidden" name="action" value="Purchase">
+								
 							</form> </td>
 				<tr>
 			</tbody>

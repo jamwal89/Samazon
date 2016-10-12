@@ -68,6 +68,7 @@ public class CartServlet extends HttpServlet {
 			
 		}
 		else if (action.equals("Delete")){
+			System.out.println("I am here");
 			String id=request.getParameter("Productid");
 			System.out.print("Product is: "+id);
 			Samazonorder prod= DBOrders.getProduct(Long.parseLong(id));
