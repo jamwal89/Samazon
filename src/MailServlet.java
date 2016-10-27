@@ -52,9 +52,6 @@ public class MailServlet extends HttpServlet {
 			String email= user.getUseremail();
 			session.setAttribute("email", email);
 			
-			//String firstname="neha";
-			//String lastname ="jamwal";
-			//String email= "nehajamwal89@gmail.com";
 			
 			String to =email;
 			String from ="jamwal@samazon.com";

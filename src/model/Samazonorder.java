@@ -46,6 +46,8 @@ public class Samazonorder implements Serializable {
 		this.orderid = orderid;
 	}
 
+	
+	
 	public Date getOndate() {
 		return this.ondate;
 	}
